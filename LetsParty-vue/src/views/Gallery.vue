@@ -8,6 +8,12 @@ const galleryImages = [
 </script>
 
 <template>
+
+<!--ToDo:
+-- remove rounded boarder from gallery images
+-- no pictures with people's faces
+-->
+
   <section class="section section--light">
     <div class="section-header">
       <p class="eyebrow">Gallery</p>

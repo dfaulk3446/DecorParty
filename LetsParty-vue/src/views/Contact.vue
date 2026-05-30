@@ -16,8 +16,13 @@ const form = reactive({
   areaFiles: null as FileList | null,
 })
 
+const inspoInput = ref<HTMLInputElement | null>(null)
+const areaInput = ref<HTMLInputElement | null>(null)
 const inspoLabel = ref('No files selected')
 const areaLabel = ref('No files selected')
+const isSending = ref(false)
+const responseMessage = ref('')
+const responseType = ref<'success' | 'error' | ''>('')
 
 const handleFileChange = (event: Event, target: 'inspo' | 'area') => {
   const input = event.target as HTMLInputElement
@@ -31,9 +36,70 @@ const handleFileChange = (event: Event, target: 'inspo' | 'area') => {
   }
 }
 
-const submitForm = (event: Event) => {
+const resetForm = () => {
+  form.fullName = ''
+  form.email = ''
+  form.phone = ''
+  form.eventDate = ''
+  form.street = ''
+  form.city = ''
+  form.state = ''
+  form.zip = ''
+  form.themeIdeas = ''
+  form.eventType = 'inside'
+  form.inspoFiles = null
+  form.areaFiles = null
+  if (inspoInput.value) inspoInput.value.value = ''
+  if (areaInput.value) areaInput.value.value = ''
+  inspoLabel.value = 'No files selected'
+  areaLabel.value = 'No files selected'
+}
+
+const submitForm = async (event: Event) => {
   event.preventDefault()
-  alert('Thanks! Your message has been received. We will follow up shortly.')
+  isSending.value = true
+  responseMessage.value = ''
+  responseType.value = ''
+
+  const payload = {
+    fullName: form.fullName,
+    email: form.email,
+    phone: form.phone,
+    eventDate: form.eventDate,
+    street: form.street,
+    city: form.city,
+    state: form.state,
+    zip: form.zip,
+    themeIdeas: form.themeIdeas,
+    eventType: form.eventType,
+    inspoFiles: form.inspoFiles ? Array.from(form.inspoFiles).map((file) => file.name) : [],
+    areaFiles: form.areaFiles ? Array.from(form.areaFiles).map((file) => file.name) : [],
+  }
+
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+
+    const result = await response.json()
+    if (response.ok && result.success) {
+      responseMessage.value = 'Your request was sent successfully. Thank you!'
+      responseType.value = 'success'
+      resetForm()
+    } else {
+      responseMessage.value = result.message || 'Unable to send your request at this time.'
+      responseType.value = 'error'
+    }
+  } catch (error) {
+    responseMessage.value = 'Unable to send your request right now. Please try again later.'
+    responseType.value = 'error'
+  } finally {
+    isSending.value = false
+  }
 }
 </script>
 
@@ -105,17 +171,20 @@ const submitForm = (event: Event) => {
       <div class="upload-grid">
         <div class="upload-card">
           <label class="upload-label" for="inspoFiles">Upload inspiration images</label>
-          <input id="inspoFiles" type="file" accept="image/*" multiple @change="event => handleFileChange(event, 'inspo')" />
+          <input ref="inspoInput" id="inspoFiles" type="file" accept="image/*" multiple @change="event => handleFileChange(event, 'inspo')" />
           <p class="upload-hint">{{ inspoLabel }}</p>
         </div>
 
         <div class="upload-card">
           <label class="upload-label" for="areaFiles">Upload area photos</label>
-          <input id="areaFiles" type="file" accept="image/*" multiple @change="event => handleFileChange(event, 'area')" />
+          <input ref="areaInput" id="areaFiles" type="file" accept="image/*" multiple @change="event => handleFileChange(event, 'area')" />
           <p class="upload-hint">{{ areaLabel }}</p>
         </div>
       </div>
-      <button type="submit" class="button primary">Send request</button>
+      <button type="submit" class="button primary" :disabled="isSending">
+        {{ isSending ? 'Sending...' : 'Send request' }}
+      </button>
+      <p v-if="responseMessage" :class="['form-message', responseType]">{{ responseMessage }}</p>
     </form>
   </section>
 </template>
@@ -214,10 +283,24 @@ textarea {
   font-weight: 700;
   cursor: pointer;
 }
-@media (max-width: 840px) {
-  .form-grid,
-  .upload-grid {
-    grid-template-columns: 1fr;
-  }
+
+.button.primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
+
+.form-message {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.form-message.success {
+  color: #1f7a3d;
+}
+
+.form-message.error {
+  color: #a62d2d;
+}
+
 </style>

@@ -3,6 +3,7 @@
 <template>
   <div class="page-shell">
     <header class="site-header">
+
       <div class="brand">
         <span class="brand-mark">
           <img src="../public/LetsPartyLog.png" alt="Let's Party Decor logo" class="brand-mark__img" />
@@ -18,15 +19,43 @@
         <router-link to="/gallery">Gallery</router-link>
         <router-link to="/contact">Contact</router-link>
       </nav>
+      <div>
+      </div>
     </header>
 
     <router-view />
 
     <footer id="contact" class="site-footer">
       <div>
-        <p class="eyebrow">Contact</p>
-        <h2>Let’s plan your celebration.</h2>
-        <p>hello@letspartydecor.com | (555) 123-4567</p>
+        <h1>Let's Party Decor</h1>
+        <p class="eyebrow">Find Us Online</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+              <path d="M16.5 7.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M7.5 7.5h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M15 8.5h2.5L17 5h-2.5c-2 0-3 1-3 3v1.5H9v2.5h2.5V19h3v-5h2.5l.5-2.5H14.5V9.5c0-.4.2-1 .8-1z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/" class="social-link" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M17.5 6.75a4.75 4.75 0 0 1-4.75-4.75v11.5a4.75 4.75 0 1 1-4.75-4.75" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <path d="M15 6.75h3.5v3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a href="https://www.pinterest.com/" class="social-link" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="8.25" stroke="currentColor" stroke-width="1.8" fill="none"/>
+              <path d="M11.7 15.7c-.5 1.4-.9 2.9-1.7 4.2-.3-.6-.5-1.4-.5-2.2 0-1 .2-1.9.7-2.8.8-1.5 1.7-3 2.2-4.8.3-1 .4-2 .3-3-1.5.2-2.9 1.1-3.6 2.6-.7 1.4-.5 3.2.2 4.7.3.7.8 1.4.7 2.1-.7.1-1.3-.4-1.4-1.2-.2-1.1.2-2.2.6-3.2.5-1 1.2-1.9 2.1-2.6 1.4-1 3.5-1.2 5.1-.5.7.3 1.2 1 1.1 1.8-.1 1.5-1.7 2.5-3.2 2.3-.7-.1-1.4-.5-1.8-1.1-.2.8-.5 1.5-.7 2.2z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
       </div>
       <p class="footer-note">Serving celebrations with custom decor, balloon art, and event rentals.</p>
     </footer>
@@ -38,7 +67,7 @@
   color-scheme: only light;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: #1d1d21;
-  background: #fffaf7;
+  background: #ffdfb2;
 }
 
 * {
@@ -57,9 +86,9 @@ body {
 }
 
 .page-shell {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 28px 24px 48px;
+  max-width: 12000px;
+  margin: 0, 0;
+  padding: 0px 20px 10px;
 }
 
 .site-header {
@@ -68,6 +97,7 @@ body {
   align-items: center;
   gap: 24px;
   padding: 8px 0 30px;
+  background: rgba(255, 120, 217, 0.418);
 }
 
 .brand {
@@ -77,26 +107,19 @@ body {
 }
 
 .brand-mark {
-  width: 52px;
-  height: 52px;
-  border-radius: 18px;
+  width: 150px;
+  height: 120px;
+  border-radius: 22px;
   display: grid;
   place-items: center;
   font-weight: 800;
   color: #fff;
-  background: linear-gradient(135deg, #f57dce, #ffb86b);
+  /*background: linear-gradient(135deg, #f57dce, #ffb86b);*/
 }
 
 .brand-mark__img {
-  width: 72%;
-  height: 72%;
-  object-fit: contain;
-  display: block;
-}
-
-/* Carousel styles */
-.carousel-section {
-  margin: 36px 0;
+  width: 84%;
+  height: 84%;
 }
 .carousel {
   position: relative;
@@ -106,8 +129,8 @@ body {
 }
 .carousel-window {
   overflow: hidden;
-  width: 100%;
-  border-radius: 18px;
+  width: 120%;
+  border-radius: 10px;
 }
 .carousel-track {
   display: flex;
@@ -117,19 +140,18 @@ body {
 .carousel-card {
   flex: 0 0 calc(100% / 3);
   box-sizing: border-box;
-  padding: 0 8px;
+  padding: 0 2px;
 }
 .carousel-card:last-child {
   padding-right: 0;
 }
 .carousel-image {
-  width: 100%;
-  height: auto;
+  width: 120%;
+  height: 120%;
   display: block;
   object-fit: contain;
-  border-radius: 18px;
-  aspect-ratio: 4 / 3;
-  background: #f9f0f7;
+  border-radius:3px;
+  aspect-ratio: 1.91/1;
 }
 .carousel-btn {
   background: rgba(255, 255, 255, 0.92);
@@ -230,7 +252,7 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: #6b4f74;
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -239,7 +261,7 @@ body {
   gap: 32px;
   grid-template-columns: 1.2fr 0.8fr;
   align-items: center;
-  padding: 50px 0 36px;
+  padding: 50px 30px 36px;
 }
 
 .hero-copy h2 {
@@ -434,7 +456,7 @@ body {
 .section--cta {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 20px;
   padding: 44px 0 52px;
@@ -475,6 +497,38 @@ body {
   margin: 0;
   color: #5c4d5f;
   line-height: 1.75;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #d65fa8;
+  box-shadow: 0 14px 30px rgba(63, 41, 73, 0.08);
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  background-color: #fff;
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
 }
 
 .footer-note {

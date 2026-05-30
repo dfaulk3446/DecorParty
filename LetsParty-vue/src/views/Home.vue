@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
+
+
 const categories = [
   {
     title: 'Balloon Styling',
     description: 'Custom arches, garlands, bouquets and balloon walls for every party theme.',
-    image: '/images/categories/balloon-styling.jpg',
+    image: 'IMG_6043.jpg',
     emoji: '🎈',
   },
   {
@@ -17,7 +19,7 @@ const categories = [
   {
     title: 'Backdrops',
     description: 'Photo-ready backdrops for birthdays, showers, weddings and corporate events.',
-    image: 'GradParty.heic',
+    image: 'gradParty.jpeg',
     emoji: '📸',
   },
   {
@@ -79,17 +81,30 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
+
+<!--ToDo:
+-- remove white boarder from carousel images
+-- add hero image background
+-- turn footer into long diff color border
+-- Remove side cards
+--Make nav dark pink
+-- What we do make it like twist and shouts offerings 
+-- Merge featured cat and what we do
+  -->
+
+
   <section class="hero">
+      <img src="/HeroPicture.jpg" alt="Graduation Party">
     <div class="hero-copy">
       <p class="eyebrow">Elevate your event</p>
-      <h2>Your one-stop party decor studio for bold colors, elegant florals, and playful styling.</h2>
+      <h2>Lets Get Started.</h2>
       <p class="hero-text">From intimate birthday tables to large-scale balloon installations, we deliver custom decor that creates unforgettable memories.</p>
       <div class="hero-actions">
-        <a class="button primary" href="#contact">Book a consult</a>
-        <a class="button secondary" href="#categories">View categories</a>
+        <a class="button primary" href="/contact">Book Now!</a>
+        <a class="button secondary" href="/gallery">View our Works</a>
       </div>
     </div>
-    <div class="hero-panel">
+    <!--div class="hero-panel">
       <div class="stat-card">
         <span class="stat-value">50+</span>
         <span class="stat-label">Events styled</span>
@@ -102,7 +117,7 @@ onBeforeUnmount(() => {
         <p class="feature-title">Custom Constructions</p>
         <p>Unique builds that fit your vision.</p>
       </div>
-    </div>
+    </div-->
   </section>
 
   <section id="services" class="section section--light">
@@ -136,7 +151,7 @@ onBeforeUnmount(() => {
         </span>
         <h3>{{ category.title }}</h3>
         <p>{{ category.description }}</p>
-        <a href="#contact" class="card-link">Start planning</a>
+        
       </article>
     </div>
   </section>
@@ -146,7 +161,7 @@ onBeforeUnmount(() => {
       <h2>Ready to make your next event unforgettable?</h2>
       <p>Reach out for a free styling consultation and a custom decor plan designed for your celebration.</p>
     </div>
-    <a class="button primary button--large" href="#contact">Schedule a consult</a>
+    <a class="button primary button--large" href="/contact">Book Now!</a>
   </section>
 
   <section class="carousel-section">
@@ -176,3 +191,11 @@ onBeforeUnmount(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+.hero img {
+  width: max(100%, 400px);
+  height: auto;
+  display: block;
+}
+  </style>
