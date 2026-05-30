@@ -1,133 +1,26 @@
-<script setup lang="ts">
-const categories = [
-  {
-    title: 'Balloon Styling',
-    description: 'Custom arches, garlands, bouquets and balloon walls for every party theme.',
-    image: '/images/categories/balloon-styling.jpg',
-    emoji: '🎈',
-  },
-  {
-    title: 'Table Decor',
-    description: 'Table runners, place settings and centerpieces designed for your celebration.',
-    image: '/images/categories/table-decor.jpg',
-    emoji: '✨',
-  },
-  {
-    title: 'Backdrops',
-    description: 'Photo-ready backdrops for birthdays, showers, weddings and corporate events.',
-    image: '/images/categories/backdrops.jpg',
-    emoji: '📸',
-  },
-  {
-    title: 'Party Rentals',
-    description: 'Love seats, neon signs, arches and event decor rentals that make a statement.',
-    image: '/images/categories/party-rentals.jpg',
-    emoji: '🎉',
-  },
-]
-
-const highlights = [
-  {
-    title: 'Design Consultation',
-    description: 'Personalized styling advice that brings your vision to life.',
-  },
-  {
-    title: 'Fast Delivery',
-    description: 'On-time setup and delivery so you can focus on celebrating.',
-  },
-  {
-    title: 'Custom Themes',
-    description: 'Tailored decor packages for birthdays, showers, weddings, and holidays.',
-  },
-]
-</script>
+<script setup></script>
 
 <template>
   <div class="page-shell">
     <header class="site-header">
       <div class="brand">
-        <span class="brand-mark">LP</span>
+        <span class="brand-mark">
+          <img src="../public/LetsPartyLog.png" alt="Let's Party Decor logo" class="brand-mark__img" />
+        </span>
         <div>
           <p class="eyebrow">Let’s Party Decor</p>
           <h1>Party decor for celebrations that sparkle.</h1>
         </div>
       </div>
       <nav class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#categories">Categories</a>
-        <a href="#contact">Contact</a>
+        <router-link to="/">Home</router-link>
+        <router-link :to="{ path: '/', hash: '#services' }">Services</router-link>
+        <router-link to="/gallery">Gallery</router-link>
+        <router-link to="/contact">Contact</router-link>
       </nav>
     </header>
 
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Elevate your event</p>
-        <h2>Your one-stop party decor studio for bold colors, elegant florals, and playful styling.</h2>
-        <p class="hero-text">From intimate birthday tables to large-scale balloon installations, we deliver custom decor that creates unforgettable memories.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#contact">Book a consult</a>
-          <a class="button secondary" href="#categories">View categories</a>
-        </div>
-      </div>
-      <div class="hero-panel">
-        <div class="stat-card">
-          <span class="stat-value">50+</span>
-          <span class="stat-label">Events styled</span>
-        </div>
-        <div class="feature-card feature-card--alt">
-          <p class="feature-title">Custom balloon arches</p>
-          <p>Fresh designs for every theme and budget.</p>
-        </div>
-        <div class="feature-card">
-          <p class="feature-title">Premium rental packages</p>
-          <p>Neon signs, photo walls, lounge seating.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="section section--light">
-      <div class="section-header">
-        <p class="eyebrow">What we do</p>
-        <h2>Stylish decor planning for all celebrations.</h2>
-      </div>
-      <div class="highlight-grid">
-        <article v-for="item in highlights" :key="item.title" class="highlight-card">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.description }}</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="categories" class="section">
-      <div class="section-header">
-        <p class="eyebrow">Featured categories</p>
-        <h2>Decor packages that work together effortlessly.</h2>
-      </div>
-      <div class="category-grid">
-        <article v-for="category in categories" :key="category.title" class="category-card">
-          <span class="category-icon">
-            <img
-              v-if="category.image"
-              :src="category.image"
-              :alt="category.title"
-              class="category-image"
-            />
-            <span v-else>{{ category.emoji }}</span>
-          </span>
-          <h3>{{ category.title }}</h3>
-          <p>{{ category.description }}</p>
-          <a href="#contact" class="card-link">Start planning</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section section--cta">
-      <div class="cta-panel">
-        <h2>Ready to make your next event unforgettable?</h2>
-        <p>Reach out for a free styling consultation and a custom decor plan designed for your celebration.</p>
-      </div>
-      <a class="button primary button--large" href="#contact">Schedule a consult</a>
-    </section>
+    <router-view />
 
     <footer id="contact" class="site-footer">
       <div>
@@ -192,6 +85,118 @@ body {
   font-weight: 800;
   color: #fff;
   background: linear-gradient(135deg, #f57dce, #ffb86b);
+}
+
+.brand-mark__img {
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Carousel styles */
+.carousel-section {
+  margin: 36px 0;
+}
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.carousel-window {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 18px;
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+.carousel-card {
+  flex: 0 0 calc(100% / 3);
+  box-sizing: border-box;
+  padding: 0 8px;
+}
+.carousel-card:last-child {
+  padding-right: 0;
+}
+.carousel-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 18px;
+  aspect-ratio: 4 / 3;
+  background: #f9f0f7;
+}
+.carousel-btn {
+  background: rgba(255, 255, 255, 0.92);
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(45, 23, 42, 0.08);
+}
+.carousel-indicators {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+.carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+}
+.carousel-indicators button.active {
+  background: #d65fa8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.gallery-card {
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(45, 23, 42, 0.08);
+}
+.gallery-card img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .carousel {
+    flex-direction: column;
+  }
+
+  .carousel-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 680px) {
+  .carousel {
+    flex-direction: column;
+  }
+
+  .carousel-btn {
+    width: 38px;
+    height: 38px;
+  }
 }
 
 .eyebrow {
