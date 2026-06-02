@@ -5,28 +5,28 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 const categories = [
   {
-    title: 'Balloon Styling',
+    title: 'Custom Arches',
     description: 'Custom arches, garlands, bouquets and balloon walls for every party theme.',
     image: 'IMG_6043.jpg',
-    emoji: '🎈',
+    buttonText: 'Shop now',
   },
   {
-    title: 'Battchlorets',
-    description: 'Fun and festive bachelor and bachelorette party decor packages that set the tone for celebration.',
-    image: 'BrideBox.jpg',
-    emoji: '✨',
-  },
-  {
-    title: 'Backdrops',
+    title: 'Custom Backdrops',
     description: 'Photo-ready backdrops for birthdays, showers, weddings and corporate events.',
-    image: 'gradParty.jpeg',
-    emoji: '📸',
+    image: 'BrideBox.jpg',
+    buttonText: 'Shop now',
   },
   {
-    title: 'Party Rentals',
+    title: 'Custom Columns',
+    description: 'Photo-ready columns for birthdays, showers, weddings and corporate events.',
+    image: 'gradParty.jpeg',
+    buttonText: 'Shop now',
+  },
+  {
+    title: 'Grab-N-Go',
     description: 'Love seats, neon signs, arches and event decor rentals that make a statement.',
     image: 'MJ-Bday.jpeg',
-    emoji: '🎉',
+    buttonText: 'Shop now',
   },
 ]
 
@@ -89,6 +89,11 @@ onBeforeUnmount(() => {
 -- Remove side cards
 --Make nav dark pink
 -- What we do make it like twist and shouts offerings 
+    -- Custom Arches
+    -- Custom Backdrops 
+    -- cols
+    --grab n go
+    --
 -- Merge featured cat and what we do
   -->
 
@@ -120,7 +125,7 @@ onBeforeUnmount(() => {
     </div-->
   </section>
 
-  <section id="services" class="section section--light">
+  <!--section id="services" class="section section--light">
     <div class="section-header">
       <p class="eyebrow">What we do</p>
       <h2>Stylish decor planning for all celebrations.</h2>
@@ -131,29 +136,27 @@ onBeforeUnmount(() => {
         <p>{{ item.description }}</p>
       </article>
     </div>
-  </section>
+  </section-->
 
   <section id="categories" class="section">
     <div class="section-header">
       <p class="eyebrow">Featured categories</p>
       <h2>Decor packages that work together effortlessly.</h2>
     </div>
-    <div class="category-grid">
-      <article v-for="category in categories" :key="category.title" class="category-card">
-        <span class="category-icon">
-          <img
-            v-if="category.image"
-            :src="category.image"
-            :alt="category.title"
-            class="category-image"
-          />
-          <span v-else>{{ category.emoji }}</span>
-        </span>
-        <h3>{{ category.title }}</h3>
-        <p>{{ category.description }}</p>
-        
-      </article>
-    </div>
+    <section class="categories">
+      <div
+        v-for="category in categories"
+        :key="category.title"
+        class="category-card"
+        :style="{ backgroundImage: `url(${category.image})` }"
+      >
+        <div class="category-copy">
+          <h1 class="category-title">{{ category.title }}</h1>
+          <p class="category-description">{{ category.description }}</p>
+          <button class="category-btn" href="/contact">{{ category.buttonText }}</button>
+        </div>
+      </div>
+    </section>
   </section>
 
   <section class="section section--cta">
@@ -198,4 +201,62 @@ onBeforeUnmount(() => {
   height: auto;
   display: block;
 }
-  </style>
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.category-card {
+  position: relative;
+  min-height: 45rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 60%, rgb(255, 255, 255) 85%);
+  
+}
+
+.category-copy {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0);
+}
+
+.category-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+}
+
+.category-description {
+  margin: 0 1rem 1rem 0;
+  color: #333;
+  line-height: 1.5;
+}
+
+.category-btn {
+  border: 1px solid #333;
+  border-radius: 999px;
+  padding: 0.75rem 1.25rem;
+  background: #ff8ccf;
+  color: #111;
+  cursor: pointer;
+}
+
+.category-btn:hover {
+   background: linear-gradient(135deg, #ff8ccf, #ffb06b); 
+}
+</style>

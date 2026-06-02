@@ -15,7 +15,7 @@
       </div>
       <nav class="nav-links">
         <router-link to="/">Home</router-link>
-        <router-link :to="{ path: '/', hash: '#services' }">Services</router-link>
+        <router-link to= "/services">Services</router-link>
         <router-link to="/gallery">Gallery</router-link>
         <router-link to="/contact">Contact</router-link>
       </nav>
