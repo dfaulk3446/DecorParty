@@ -1,5 +1,15 @@
+
+
+
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+/*
+TODO:
+ -- Add budget or price range field
+ -- What your wanting (cols, arches, backdrops, etc)
+ -- add a descriptoin at top like posh
+ -- Length? 500 min smallest 12 foot. 
+*/
 
 const form = reactive({
   fullName: '',
@@ -14,6 +24,8 @@ const form = reactive({
   eventType: 'inside',
   inspoFiles: null as FileList | null,
   areaFiles: null as FileList | null,
+  budget: '',
+  length: '12',
 })
 
 const inspoInput = ref<HTMLInputElement | null>(null)
@@ -47,6 +59,9 @@ const resetForm = () => {
   form.zip = ''
   form.themeIdeas = ''
   form.eventType = 'inside'
+  form.budget = ''
+  form.length = '12'
+
   form.inspoFiles = null
   form.areaFiles = null
   if (inspoInput.value) inspoInput.value.value = ''
@@ -71,6 +86,8 @@ const submitForm = async (event: Event) => {
     state: form.state,
     zip: form.zip,
     themeIdeas: form.themeIdeas,
+    budget: form.budget,
+    length: form.length,
     eventType: form.eventType,
     inspoFiles: form.inspoFiles ? Array.from(form.inspoFiles).map((file) => file.name) : [],
     areaFiles: form.areaFiles ? Array.from(form.areaFiles).map((file) => file.name) : [],
@@ -161,12 +178,23 @@ const submitForm = async (event: Event) => {
             <option value="both">Both</option>
           </select>
         </div>
+
+        <div class="input-group">
+          <label for="budget">Budget or price range</label>
+          <input id="budget" type="text" v-model="form.budget" placeholder="$500 - $1000" min="500"/>
+        </div>
+
+              <div class="input-group">
+          <label for="length">Length of decor (in feet)</label>
+          <input id="length" type="number" v-model="form.length" placeholder="12" min="12" />
+        </div>
       </div>
 
-      <div class="input-group">
+     <div class="input-group">
         <label for="themeIdeas">Theme or vision</label>
         <textarea id="themeIdeas" v-model="form.themeIdeas" placeholder="Tell us about your theme, colors, or party mood."></textarea>
       </div>
+
 
       <div class="upload-grid">
         <div class="upload-card">

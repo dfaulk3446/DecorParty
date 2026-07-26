@@ -96,8 +96,10 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  padding: 8px 0 30px;
+  padding: 8px 0 15px;
   background: rgba(255, 120, 217, 0.418);
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 .brand {
@@ -253,7 +255,7 @@ body {
 .nav-links a {
   text-decoration: none;
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .hero {
