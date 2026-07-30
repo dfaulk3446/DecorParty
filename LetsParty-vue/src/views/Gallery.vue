@@ -122,4 +122,33 @@ const galleryPortrait = [
   object-fit: contain;
   max-height: 520px;
 }
+
+@media (max-width: 768px) {
+  .gallery-grid,
+  .gallery-grid-port {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid,
+  .gallery-grid-port,
+  .gallery-card,
+  .gallery-card-port {
+    width: 100%;
+  }
+
+  .gallery-image,
+  .gallery-image-port {
+    max-height: 320px;
+    width: 100%;
+    height: auto;
+  }
+
+  .gallery-grid {
+    gap: 1rem;
+  }
+
+  .gallery-grid-port {
+    gap: 1rem;
+  }
+}
 </style>
