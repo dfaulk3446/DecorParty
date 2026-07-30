@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-
-
+import CarouselSection from '@/components/CarouselSection.vue'
 
 const categories = [
   {
@@ -45,39 +43,6 @@ const highlights = [
   },
 ]
 
-const carouselImages = [
-  '/MJ-Bday.jpeg',
-  '/IMG_6043.jpg',
-  '/IMG_6972.JPG',
-  '/IMG_6981.JPG',
-]
-
-const visibleSlides = 3
-const currentSlide = ref(0)
-let carouselTimer: number | undefined
-
-const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % carouselImages.length
-}
-const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + carouselImages.length) % carouselImages.length
-}
-const goTo = (i: number) => {
-  currentSlide.value = i % carouselImages.length
-}
-
-const trackStyle = computed(() => ({
-  transform: `translateX(-${currentSlide.value * (100 / carouselImages.length)}%)`,
-  width: `${(carouselImages.length * 100) / visibleSlides}%`,
-}))
-
-onMounted(() => {
-  carouselTimer = window.setInterval(nextSlide, 3500)
-})
-
-onBeforeUnmount(() => {
-  if (carouselTimer) clearInterval(carouselTimer)
-})
 </script>
 
 <template>
@@ -167,32 +132,7 @@ onBeforeUnmount(() => {
     <a class="button primary button--large" href="/contact">Book Now!</a>
   </section>
 
-  <section class="carousel-section">
-    <div class="carousel">
-      <button class="carousel-btn carousel-btn--prev" @click="prevSlide" aria-label="Previous">‹</button>
-      <div class="carousel-window">
-        <div class="carousel-track" :style="trackStyle">
-          <div v-for="(img, i) in carouselImages" :key="img" class="carousel-card">
-            <img
-              :src="img"
-              :alt="'Slide ' + (i + 1)"
-              class="carousel-image"
-            />
-          </div>
-        </div>
-      </div>
-      <button class="carousel-btn carousel-btn--next" @click="nextSlide" aria-label="Next">›</button>
-    </div>
-    <div class="carousel-indicators">
-      <button
-        v-for="(img, i) in carouselImages"
-        :key="i"
-        @click="goTo(i)"
-        :class="{ active: i === currentSlide }"
-        :aria-label="'Go to slide ' + (i + 1)"
-      ></button>
-    </div>
-  </section>
+  <CarouselSection />
 </template>
 
 <style scoped>

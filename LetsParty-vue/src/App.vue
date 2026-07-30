@@ -34,7 +34,7 @@ const closeMenu = () => {
           <div class="nav-panel__content">
             <nav class="nav-links">
               <router-link to="/" @click="closeMenu">Home</router-link>
-              <router-link to="/services" @click="closeMenu">Services</router-link>
+              <!--router-link to="/services" @click="closeMenu">Services</router-link-->
               <router-link to="/gallery" @click="closeMenu">Gallery</router-link>
               <router-link to="/contact" @click="closeMenu">Contact</router-link>
             </nav>

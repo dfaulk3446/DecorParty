@@ -331,4 +331,52 @@ textarea {
   color: #a62d2d;
 }
 
+@media (max-width: 680px) {
+  .contact-page {
+    padding: 18px 16px;
+  }
+
+  .contact-form {
+    gap: 18px;
+  }
+
+  .form-grid,
+  .upload-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .input-group.full-width {
+    grid-column: auto;
+  }
+
+  .input-group,
+  .upload-card {
+    width: 100%;
+  }
+
+  .input-group label,
+  .upload-label {
+    font-size: 0.95rem;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 14px 16px;
+  }
+
+  textarea {
+    min-height: 180px;
+  }
+
+  .button.primary {
+    width: 100%;
+  }
+
+  .contact-intro {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+}
+
 </style>

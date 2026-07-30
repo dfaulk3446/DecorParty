@@ -11,8 +11,6 @@ const gallerySmall = [
   '/Let%E2%80%99s%20party/IMG_4402.jpg',
   '/Let%E2%80%99s%20party/IMG_0707.JPG',
   '/Let%E2%80%99s%20party/IMG_6025.JPG',
-  '/IMG_6043.jpg',
-  '/Let%E2%80%99s%20party/IMG_6029.jpg',
   '/Let%E2%80%99s%20party/IMG_6032.jpg',
   '/Let%E2%80%99s%20party/IMG_3690.jpg',
 
